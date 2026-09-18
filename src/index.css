@@ -1,0 +1,22 @@
+body, table, th, td, select, input, p, h1, h2, h3, h4, li {
+  color: #1e293b !important;
+}
+:root {
+  color: #1e293b;
+  background-color: #f4f6f9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+}
+
+table {
+  color: #1e293b !important;
+}
+
+th, td {
+  color: #1e293b !important;
+}

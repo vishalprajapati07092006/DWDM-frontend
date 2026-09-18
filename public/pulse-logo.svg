@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="tileBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe4e6"/>
+      <stop offset="100%" stop-color="#fecdd3"/>
+    </linearGradient>
+    <linearGradient id="heartFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded pink tile (matches the header's icon badge) -->
+  <rect width="64" height="64" rx="14" fill="url(#tileBg)"/>
+
+  <!-- Heart glyph -->
+  <path d="M32 50
+           C 32 50, 12 38, 12 24
+           C 12 16, 18 11, 25 11
+           C 29 11, 31.5 13.5, 32 15
+           C 32.5 13.5, 35 11, 39 11
+           C 46 11, 52 16, 52 24
+           C 52 38, 32 50, 32 50 Z"
+        fill="url(#heartFill)"/>
+</svg>
