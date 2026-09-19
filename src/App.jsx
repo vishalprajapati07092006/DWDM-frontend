@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import OlapView from './OlapView';
 
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'https://dwdm-backend-oavt.onrender.com') + '/api';
 
 const CLUSTER_PALETTE = ['#2563eb', '#059669', '#d97706', '#9333ea', '#dc2626', '#0891b2'];
 
