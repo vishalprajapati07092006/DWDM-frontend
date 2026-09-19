@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Same base your App.jsx already uses.
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'https://dwdm-backend-oavt.onrender.com') + '/api';
 
 export async function fetchOlapMeta() {
   const res = await axios.get(`${API_BASE}/olap/meta`);
