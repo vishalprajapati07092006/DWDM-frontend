@@ -355,22 +355,8 @@ export default function App() {
         {activeTab === 'mining' && (
           <div>
             {/* Dataset Caveat Banner */}
-            {classificationData?.dataset_caveat && (
-              <div style={{ 
-                background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)', 
-                border: '1px solid #fde68a', color: '#92400e', 
-                padding: '14px 16px', borderRadius: '14px', marginBottom: '20px', 
-                display: 'flex', alignItems: 'flex-start', gap: '10px', 
-                fontSize: '13px', lineHeight: '1.5',
-                boxShadow: '0 4px 16px -8px rgba(217,119,6,0.25)',
-              }}>
-                <Info size={18} style={{ flexShrink: 0, marginTop: '1px' }} />
-                <div>
-                  <strong style={{ fontWeight: '800' }}>Dataset caveat: </strong>
-                  {classificationData.dataset_caveat}
-                </div>
-              </div>
-            )}
+            
+                
 
             {/* Top KPI Deck */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '28px' }}>
@@ -602,40 +588,8 @@ export default function App() {
                 </div>
               </div>
 
-              {clusterCaveat && (
-                <div style={{ 
-                  background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)', 
-                  border: '1px solid #fde68a', color: '#92400e', 
-                  padding: '12px 14px', borderRadius: '10px', marginBottom: '16px', 
-                  display: 'flex', alignItems: 'flex-start', gap: '10px', 
-                  fontSize: '12.5px', lineHeight: '1.5',
-                }}>
-                  <Info size={16} style={{ flexShrink: 0, marginTop: '1px' }} />
-                  <div><strong style={{ fontWeight: '800' }}>Cluster caveat: </strong>{clusterCaveat}</div>
-                </div>
-              )}
 
-              {multicollinearityCheck?.flagged_pairs?.length > 0 && (
-                <div style={{ 
-                  background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)', 
-                  border: '1px solid #fecaca', color: '#991b1b', 
-                  padding: '12px 14px', borderRadius: '10px', marginBottom: '16px', 
-                  display: 'flex', alignItems: 'flex-start', gap: '10px', 
-                  fontSize: '12.5px', lineHeight: '1.5',
-                }}>
-                  <AlertTriangle size={16} style={{ flexShrink: 0, marginTop: '1px' }} />
-                  <div>
-                    <strong style={{ fontWeight: '800' }}>Multicollinearity flagged (|r| &ge; {multicollinearityCheck.threshold}): </strong>
-                    {multicollinearityCheck.flagged_pairs.map((p, i) => (
-                      <span key={i}>
-                        {i > 0 && ', '}
-                        <code>{p.feature_a}</code> &harr; <code>{p.feature_b}</code> (r = {p.correlation})
-                      </span>
-                    ))}
-                    . Consider whether both features add independent signal before treating the segmentation as final.
-                  </div>
-                </div>
-              )}
+              
 
               {clusteringData.length > 0 ? (
                 <div style={{ display: 'grid', gridTemplateColumns: `repeat(${clusteringData.length}, 1fr)`, gap: '16px' }}>
