@@ -252,7 +252,9 @@ export default function AddEntry({ onBack }) {
     if (!payload.deferral_reason) payload.deferral_reason = null;
 
     try {
-      const res = await axios.post(`${API_BASE}/donors`, payload);
+      const res = await axios.post(`${API_BASE}/donors`, payload,{
+  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+});
       setMsg({
         type: 'success',
         text: `Donor ${res.data.donor_id} added to warehouse · eligibility_id = ${res.data.eligibility_id}`,

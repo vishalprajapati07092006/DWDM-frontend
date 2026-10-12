@@ -1,10 +1,14 @@
 import axios from 'axios';
 
+function authHeaders() {
+  const token = localStorage.getItem('token');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
 // Same base your App.jsx already uses.
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'https://dwdm-backend-oavt.onrender.com') + '/api';
 
 export async function fetchOlapMeta() {
-  const res = await axios.get(`${API_BASE}/olap/meta`);
+  const res = await axios.get(`${API_BASE}/olap/meta`, { headers: authHeaders() });
   return res.data;
 }
 

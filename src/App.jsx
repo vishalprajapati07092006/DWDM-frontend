@@ -1,3 +1,8 @@
+import { BrowserRouter, Routes, Route, Navigate, Link, useNavigate, useLocation } from 'react-router-dom';
+import { AuthProvider, useAuth } from './AuthContext';
+import ProtectedRoute from './ProtectedRoute';
+import Login from './Login';
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { 
@@ -6,7 +11,7 @@ import {
 } from 'recharts';
 import { 
   Activity, Database, Cpu, Target, Zap, Award, RefreshCw, Heart, AlertTriangle,  Compass, MapPin,
-  Plus
+  Plus, LogOut
 } from 'lucide-react';
 import OlapView from './OlapView';
 import AddEntry from './AddEntry'; 
@@ -38,7 +43,9 @@ const T = {
   font: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
 };
 
-export default function App() {
+ function Dashboard() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('mining');
   
   const [olapData, setOlapData] = useState([]);
@@ -328,6 +335,26 @@ export default function App() {
   }}
 >
   <Plus size={15} /> Add Donor
+</button>
+
+<button
+  onClick={() => { logout(); navigate('/login'); }}
+  style={{
+    marginLeft: '8px',
+    padding: '8px 14px',
+    borderRadius: '9px',
+    border: '1px solid #fecaca',
+    background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+    color: '#b91c1c',
+    cursor: 'pointer',
+    fontWeight: 700,
+    fontSize: '12.5px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+  }}
+>
+  <LogOut size={14} /> Logout
 </button>
         </div>
       </header>
@@ -1007,5 +1034,25 @@ function ClusterMetric({ label, value }) {
       <span>{label}:</span>
       <span style={{ color: T.text, fontWeight: '700' }}>{value}</span>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/*"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
