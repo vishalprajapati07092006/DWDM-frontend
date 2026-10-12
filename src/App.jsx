@@ -5,7 +5,7 @@ import {
   ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell
 } from 'recharts';
 import { 
-  Activity, Database, Cpu, Target, Zap, Award, RefreshCw, Heart, AlertTriangle, Info, Compass, MapPin,
+  Activity, Database, Cpu, Target, Zap, Award, RefreshCw, Heart, AlertTriangle,  Compass, MapPin,
   Plus
 } from 'lucide-react';
 import OlapView from './OlapView';
@@ -48,8 +48,7 @@ export default function App() {
   const [classificationData, setClassificationData] = useState(null);
   const [featureChartData, setFeatureChartData] = useState([]);
   const [clusteringData, setClusteringData] = useState([]);
-  const [multicollinearityCheck, setMulticollinearityCheck] = useState(null);
-  const [clusterCaveat, setClusterCaveat] = useState(null);
+  
   const [selectedK, setSelectedK] = useState(4);
   const [associationData, setAssociationData] = useState([]);
   const [prCurveData, setPrCurveData] = useState(null);
@@ -159,16 +158,13 @@ export default function App() {
       const clusterPayload = clusterRes.data;
       if (Array.isArray(clusterPayload?.clusters)) {
         setClusteringData(clusterPayload.clusters.map(c => ({ ...c, archetype: assignClusterArchetype(c) })));
-        setMulticollinearityCheck(clusterPayload.multicollinearity_check ?? null);
-        setClusterCaveat(clusterPayload.caveat ?? null);
+        
       } else if (Array.isArray(clusterPayload)) {
         setClusteringData(clusterPayload.map(c => ({ ...c, archetype: assignClusterArchetype(c) })));
-        setMulticollinearityCheck(null);
-        setClusterCaveat(null);
+        
       } else {
         setClusteringData([]);
-        setMulticollinearityCheck(null);
-        setClusterCaveat(null);
+        
       }
 
       setAssociationData(Array.isArray(assocRes.data) ? assocRes.data : []);
