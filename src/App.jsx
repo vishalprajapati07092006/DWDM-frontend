@@ -5,9 +5,11 @@ import {
   ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell
 } from 'recharts';
 import { 
-  Activity, Database, Cpu, Target, Zap, Award, RefreshCw, Heart, AlertTriangle, Info, Compass, MapPin
+  Activity, Database, Cpu, Target, Zap, Award, RefreshCw, Heart, AlertTriangle, Info, Compass, MapPin,
+  Plus
 } from 'lucide-react';
 import OlapView from './OlapView';
+import AddEntry from './AddEntry'; 
 
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'https://dwdm-backend-oavt.onrender.com') + '/api';
 
@@ -318,6 +320,19 @@ export default function App() {
           >
             <Database size={15} /> OLAP Analytics Cube
           </button>
+           <button 
+  onClick={() => setActiveTab('add')} 
+  style={{ 
+    padding: '8px 18px', borderRadius: '9px', border: 'none', cursor: 'pointer', 
+    fontWeight: '600', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px',
+    background: activeTab === 'add' ? 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)' : 'transparent', 
+    color: activeTab === 'add' ? T.blue : '#475569',
+    boxShadow: activeTab === 'add' ? '0 1px 3px rgba(15,23,42,0.08), 0 4px 12px -4px rgba(37,99,235,0.25)' : 'none', 
+    transition: 'all 0.2s ease',
+  }}
+>
+  <Plus size={15} /> Add Donor
+</button>
         </div>
       </header>
 
@@ -881,6 +896,7 @@ export default function App() {
 
         {/* VIEW 2: OLAP DATA CUBE */}
         {activeTab === 'olap' && <OlapView />}
+        {activeTab === 'add' && <AddEntry onBack={() => setActiveTab('mining')} />}
           
       </main>
     </div>
